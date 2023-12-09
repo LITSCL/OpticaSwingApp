@@ -93,16 +93,16 @@ public class AgregarMarcaFrame extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser archivo = new JFileChooser();
 				FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de Imagen (*.PNG,*.JPG,*.JPEG)", "png", "jpg", "jpeg");
-				archivo.addChoosableFileFilter(filtro); //Se le a�ade el filtro al JFileChooser (Para que al usuario se le sea mas f�cil buscar una imagen).
+				archivo.addChoosableFileFilter(filtro); //Se le añade el filtro al JFileChooser (Para que al usuario se le sea mas fácil buscar una imagen).
 				archivo.setDialogTitle("Busque la imagen");
-				int ventana = archivo.showOpenDialog(null); //Esta instrucci�n habre la ventana que permite seleccionar el archivo.
-				if (ventana == JFileChooser.APPROVE_OPTION) { //Aca se esta consultando si el usuario le dio click al boton "Abrir" (En el caso de que lo haya hecho se ejecuta el c�digo).
-					logoSeleccionado = archivo.getSelectedFile(); //Esta instrucci�n contiene la ruta del archivo.
-					textFieldLogoSeleccionado.setText(String.valueOf(logoSeleccionado)); //Se modifica el texto con la ruta seleccionada (Tambi�n se puede utilizar el toString para refindir el dato).
+				int ventana = archivo.showOpenDialog(null); //Esta instrucción habre la ventana que permite seleccionar el archivo.
+				if (ventana == JFileChooser.APPROVE_OPTION) { //Aca se esta consultando si el usuario le dio click al boton "Abrir" (En el caso de que lo haya hecho se ejecuta el código).
+					logoSeleccionado = archivo.getSelectedFile(); //Esta instrucción contiene la ruta del archivo.
+					textFieldLogoSeleccionado.setText(String.valueOf(logoSeleccionado)); //Se modifica el texto con la ruta seleccionada (También se puede utilizar el toString para refindir el dato).
 					
 					Image imagen = getToolkit().getImage(textFieldLogoSeleccionado.getText());
-					imagen = imagen.getScaledInstance(170, 170, Image.SCALE_DEFAULT); //Se establece el tama�o de la imagen (Deben ser las mismas dimensiones que el label).
-					lblVisualizacionLogoSeleccionado.setIcon(new ImageIcon(imagen)); //Se a�ade la imagen al label para que se muestre.
+					imagen = imagen.getScaledInstance(170, 170, Image.SCALE_DEFAULT); //Se establece el tamaño de la imagen (Deben ser las mismas dimensiones que el label).
+					lblVisualizacionLogoSeleccionado.setIcon(new ImageIcon(imagen)); //Se añade la imagen al label para que se muestre.
 				}
 			}
 		});
@@ -133,18 +133,18 @@ public class AgregarMarcaFrame extends JInternalFrame {
 		
 		String pais = this.textFieldPais.getText().trim();
 		if (pais.isEmpty()) {
-			errores.add("Falta colocar el pa�s");
+			errores.add("Falta colocar el país");
 		}
 		
 		String logo = null;
 		
 		//Aca es donde comienza el proceso de copiar un archivo al servidor.
-		rutaLogoOrigen = Paths.get(String.valueOf(logoSeleccionado)); //Aqu� se obtiene la ruta en donde se encuentra el archivo original (El m�todo "get" recibe por par�metro la ruta absoluta del archivo).
-		Path rutaLogoDestino = Paths.get("src", "cl", "inacap", "opticaSwingApp", "imagenes"); //Aqu� se obtiene la ruta del paquete donde se va a guardar el archivo de destino.
+		rutaLogoOrigen = Paths.get(String.valueOf(logoSeleccionado)); //Aquí se obtiene la ruta en donde se encuentra el archivo original (El método "get" recibe por parámetro la ruta absoluta del archivo).
+		Path rutaLogoDestino = Paths.get("src", "cl", "inacap", "opticaSwingApp", "imagenes"); //Aquí se obtiene la ruta del paquete donde se va a guardar el archivo de destino.
 		
 		try {
-			Path copiar = Files.copy(rutaLogoOrigen, rutaLogoDestino.resolve(rutaLogoOrigen.getFileName()), StandardCopyOption.REPLACE_EXISTING); //NOTA: Tambi�n se puede pasar como segundo par�metro, "StandardCopyOption.REPLACE_EXISTING", lo cual reemplaza el archivo cuando ya existe en la ruta de destino.
-			logo = logoSeleccionado.getName(); //Aqu� se almacena el nombre de la imagen + su extensi�n (Imagen.png).
+			Path copiar = Files.copy(rutaLogoOrigen, rutaLogoDestino.resolve(rutaLogoOrigen.getFileName()), StandardCopyOption.REPLACE_EXISTING); //NOTA: También se puede pasar como segundo parámetro, "StandardCopyOption.REPLACE_EXISTING", lo cual reemplaza el archivo cuando ya existe en la ruta de destino.
+			logo = logoSeleccionado.getName(); //Aquí se almacena el nombre de la imagen + su extensión (Imagen.png).
 		} catch (IOException ex) {
 			errores.add("El archivo ya existe en la ruta de destino");
 		}
@@ -164,10 +164,10 @@ public class AgregarMarcaFrame extends JInternalFrame {
 		}
 		else {
 			String mensaje = "";
-			for (int i = 0 ; i < errores.size() ; i++) {
+			for (int i = 0 ; i < errores.size(); i++) {
 				mensaje+="\n" + "- " + errores.get(i);
 			}
-			JOptionPane.showMessageDialog(null, mensaje, "Error de validaci�n", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, mensaje, "Error de validación", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

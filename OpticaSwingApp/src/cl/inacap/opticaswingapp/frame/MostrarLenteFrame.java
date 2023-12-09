@@ -67,7 +67,7 @@ public class MostrarLenteFrame extends JInternalFrame {
 		
 		tableLente.setDefaultRenderer(Object.class, new ImagenTablaUtil());
 		
-		mo.addColumn("Código");
+		mo.addColumn("CÃ³digo");
 		mo.addColumn("Precio");
 		mo.addColumn("Color Cristal");
 		mo.addColumn("Color Marco");

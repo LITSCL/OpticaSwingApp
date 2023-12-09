@@ -15,15 +15,15 @@ public class MarcaDAO {
 	public boolean save(Marca m) {
 		boolean resultado;
 		try {
-			System.out.println("Conexi�n a la DB: " + bdUtil.conectar());
+			System.out.println("Conexión a la DB: " + bdUtil.conectar());
 			String sql = "INSERT INTO marca" + "(nombre, pais_origen, logo)" + " VALUES('" + m.getNombre() + "','" + m.getPaisOrigen() + "','" + m.getLogo() + "')"; 
 			Statement st = bdUtil.getConexion().createStatement();
 			st.executeUpdate(sql);
 			resultado = true;
-			System.out.println("Ejecuci�n del SQL: " + resultado);
+			System.out.println("Ejecución del SQL: " + resultado);
 		} catch (Exception ex) {
 			resultado = false;
-			System.out.println("Ejecuci�n del SQL: " + resultado);
+			System.out.println("Ejecución del SQL: " + resultado);
 			
 		} finally { 
 			bdUtil.desconectar(); 
@@ -31,20 +31,20 @@ public class MarcaDAO {
 		return resultado;
 	}
 	
-	public List<Marca> getAll(){
+	public List<Marca> getAll() {
 		List<Marca> marcas = new ArrayList<Marca>();
 		
 		boolean resultado;
 		try {
 			
-			System.out.println("Conexi�n a la DB: " + bdUtil.conectar());
+			System.out.println("Conexión a la DB: " + bdUtil.conectar());
 		
 			String sql = "SELECT *" + " FROM marca";
 			PreparedStatement st = bdUtil.getConexion().prepareStatement(sql); 
 		
 			ResultSet rs = st.executeQuery();
 			resultado = true;
-			System.out.println("Ejecuci�n del SQL: " + resultado);
+			System.out.println("Ejecución del SQL: " + resultado);
 			while (rs.next()) { 
 				Marca m = new Marca();
 				m.setId(rs.getInt(1));
@@ -57,7 +57,7 @@ public class MarcaDAO {
 			rs.close(); 
 		} catch (Exception ex) {
 			resultado = false;
-			System.out.println("Ejecuci�n del SQL: " + resultado);
+			System.out.println("Ejecución del SQL: " + resultado);
 			marcas = null;
 			
 		} finally { 

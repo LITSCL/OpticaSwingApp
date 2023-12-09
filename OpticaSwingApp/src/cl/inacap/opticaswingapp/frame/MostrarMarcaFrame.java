@@ -70,7 +70,7 @@ public class MostrarMarcaFrame extends JInternalFrame {
 
 		mo.addColumn("ID");
 		mo.addColumn("Nombre");
-		mo.addColumn("Pa�s");
+		mo.addColumn("País");
 		mo.addColumn("Logo");
 		
 		Object []fila = new Object[4];

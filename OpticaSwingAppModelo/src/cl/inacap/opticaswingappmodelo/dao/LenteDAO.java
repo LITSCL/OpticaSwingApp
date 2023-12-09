@@ -16,15 +16,15 @@ public class LenteDAO {
 	public boolean save(Lente l) {
 		boolean resultado;
 		try {
-			System.out.println("Conexi�n a la DB: " + bdUtils.conectar());
+			System.out.println("Conexión a la DB: " + bdUtils.conectar());
 			String sql = "INSERT INTO lente" + "(codigo, precio, color_cristal, color_marco, material_marco, genero,modelo, imagen, marca_id)" + " VALUES('" + l.getCodigo() + "','" + l.getPrecio() + "','" + l.getColorCristal() + "','"+ l.getColorMarco() + "','" + l.getMaterialMarco() + "','" + l.getGenero() + "','" + l.getModelo() + "','" + l.getImagen() + "','" + l.getMarcaFK() + "')"; 
 			Statement st = bdUtils.getConexion().createStatement();
 			st.executeUpdate(sql);
 			resultado = true;
-			System.out.println("Ejecuci�n del SQL: " + resultado);
+			System.out.println("Ejecución del SQL: " + resultado);
 		} catch (Exception ex) {
 			resultado = false;
-			System.out.println("Ejecuci�n del SQL: " + resultado);
+			System.out.println("Ejecución del SQL: " + resultado);
 			
 		} finally { 
 			bdUtils.desconectar(); 
@@ -38,14 +38,14 @@ public class LenteDAO {
 		boolean resultado;
 		try {
 			
-			System.out.println("Conexi�n a la DB: " + bdUtils.conectar());
+			System.out.println("Conexión a la DB: " + bdUtils.conectar());
 		
 			String sql = "SELECT *" + " FROM lente";
 			PreparedStatement st = bdUtils.getConexion().prepareStatement(sql); 
 		
 			ResultSet rs = st.executeQuery();
 			resultado = true;
-			System.out.println("Ejecuci�n del SQL: " + resultado);
+			System.out.println("Ejecución del SQL: " + resultado);
 			while (rs.next()) { 
 				Lente l = new Lente();
 				l.setCodigo(rs.getString(1));
@@ -63,7 +63,7 @@ public class LenteDAO {
 			rs.close(); 
 		} catch (Exception ex) {
 			resultado = false;
-			System.out.println("Ejecuci�n del SQL: " + resultado);
+			System.out.println("Ejecución del SQL: " + resultado);
 			lentes = null;
 			
 		} finally { 

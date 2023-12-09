@@ -186,16 +186,16 @@ public class AgregarLenteFrame extends JInternalFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			JFileChooser archivo = new JFileChooser();
 			FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de Imagen (*.PNG,*.JPG,*.JPEG)", "png", "jpg", "jpeg");
-			archivo.addChoosableFileFilter(filtro); //Se le a�ade el filtro al JFileChooser (Para que al usuario se le sea mas f�cil buscar una imagen).
+			archivo.addChoosableFileFilter(filtro); //Se le añade el filtro al JFileChooser (Para que al usuario se le sea mas fácil buscar una imagen).
 			archivo.setDialogTitle("Busque la imagen");
-			int ventana = archivo.showOpenDialog(null); //Esta instrucci�n habre la ventana que permite seleccionar el archivo.
-			if (ventana == JFileChooser.APPROVE_OPTION) { //Aca se esta consultando si el usuario le dio click al boton "Abrir" (En el caso de que lo haya hecho se ejecuta el c�digo).
-				imagenSeleccionada = archivo.getSelectedFile(); //Esta instrucci�n contiene la ruta del archivo.
-				textFieldImagenSeleccionada.setText(String.valueOf(imagenSeleccionada)); //Se modifica el texto con la ruta seleccionada (Tambi�n se puede utilizar el toString para refindir el dato).
+			int ventana = archivo.showOpenDialog(null); //Esta instrucción habre la ventana que permite seleccionar el archivo.
+			if (ventana == JFileChooser.APPROVE_OPTION) { //Aca se esta consultando si el usuario le dio click al boton "Abrir" (En el caso de que lo haya hecho se ejecuta el código).
+				imagenSeleccionada = archivo.getSelectedFile(); //Esta instrucción contiene la ruta del archivo.
+				textFieldImagenSeleccionada.setText(String.valueOf(imagenSeleccionada)); //Se modifica el texto con la ruta seleccionada (También se puede utilizar el toString para refindir el dato).
 
 				Image imagen = getToolkit().getImage(textFieldImagenSeleccionada.getText());
-				imagen = imagen.getScaledInstance(170, 170, Image.SCALE_DEFAULT); //Se establece el tama�o de la imagen (Deben ser las mismas dimensiones que el label).
-				lblVisualizacionImagenSeleccionada.setIcon(new ImageIcon(imagen)); //Se a�ade la imagen al label para que se muestre.
+				imagen = imagen.getScaledInstance(170, 170, Image.SCALE_DEFAULT); //Se establece el tamaño de la imagen (Deben ser las mismas dimensiones que el label).
+				lblVisualizacionImagenSeleccionada.setIcon(new ImageIcon(imagen)); //Se añade la imagen al label para que se muestre.
 			}
 		}
 	});
@@ -235,14 +235,14 @@ public class AgregarLenteFrame extends JInternalFrame {
 		
 		String codigo = textFieldCodigo.getText().trim();
 		if (codigo.equals("")) {
-			errores.add("Falta colocar el c�digo");
+			errores.add("Falta colocar el código");
 		}
 		
 		double precio = 0;
 		try {
 			precio = Double.parseDouble(textFieldPrecio.getText().trim());
 		} catch (Exception ex) {
-			errores.add("El precio no es v�lido");
+			errores.add("El precio no es válido");
 		}
 		
 		String colorCristal = comboBoxColorCristal.getSelectedItem().toString();
@@ -260,12 +260,12 @@ public class AgregarLenteFrame extends JInternalFrame {
 		String imagen = null;
 		
 		//Aca es donde comienza el proceso de copiar un archivo al servidor.
-		rutaImagenOrigen = Paths.get(String.valueOf(imagenSeleccionada)); //Aqu� se obtiene la ruta en donde se encuentra el archivo original (El m�todo "get" recibe por par�metro la ruta absoluta del archivo).
-		Path rutaImagenDestino = Paths.get("src", "cl", "inacap", "opticaSwingApp", "imagenes"); //Aqu� se obtiene la ruta del paquete donde se va a guardar el archivo de destino.
+		rutaImagenOrigen = Paths.get(String.valueOf(imagenSeleccionada)); //Aquí se obtiene la ruta en donde se encuentra el archivo original (El método "get" recibe por parámetro la ruta absoluta del archivo).
+		Path rutaImagenDestino = Paths.get("src", "cl", "inacap", "opticaSwingApp", "imagenes"); //Aquí se obtiene la ruta del paquete donde se va a guardar el archivo de destino.
 		
 		try {
-			Path copiar = Files.copy(rutaImagenOrigen, rutaImagenDestino.resolve(rutaImagenOrigen.getFileName()), StandardCopyOption.REPLACE_EXISTING); //NOTA: Tambi�n se puede pasar como segundo par�metro, "StandardCopyOption.REPLACE_EXISTING", lo cual reemplaza el archivo cuando ya existe en la ruta de destino.
-			imagen = imagenSeleccionada.getName(); //Aqu� se almacena el nombre de la imagen + su extensi�n (Imagen.png).
+			Path copiar = Files.copy(rutaImagenOrigen, rutaImagenDestino.resolve(rutaImagenOrigen.getFileName()), StandardCopyOption.REPLACE_EXISTING); //NOTA: También se puede pasar como segundo parámetro, "StandardCopyOption.REPLACE_EXISTING", lo cual reemplaza el archivo cuando ya existe en la ruta de destino.
+			imagen = imagenSeleccionada.getName(); //Aquí se almacena el nombre de la imagen + su extensión (Imagen.png).
 		} catch (IOException ex) {
 			errores.add("El archivo ya existe en la ruta de destino");
 		}
@@ -301,7 +301,7 @@ public class AgregarLenteFrame extends JInternalFrame {
 				JOptionPane.showMessageDialog(null, "Lente agregado correctamente");
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "El c�digo que ingresaste ya existe en la BD", "Error en BD", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "El código que ingresaste ya existe en la BD", "Error en BD", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else {
@@ -309,7 +309,7 @@ public class AgregarLenteFrame extends JInternalFrame {
 			for (int i = 0 ; i < errores.size() ; i++) {
 				mensaje+="\n" + "- " + errores.get(i);
 			}
-			JOptionPane.showMessageDialog(null, mensaje, "Error de validaci�n", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, mensaje, "Error de validación", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }
