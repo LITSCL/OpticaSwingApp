@@ -11,14 +11,14 @@ import cl.inacap.opticaswingappmodelo.util.BDUtil;
 
 
 public class LenteDAO {
-	private BDUtil bdUtils = new BDUtil();
+	private BDUtil bdUtil = new BDUtil();
 	
 	public boolean save(Lente l) {
 		boolean resultado;
 		try {
-			System.out.println("Conexión a la DB: " + bdUtils.conectar());
+			System.out.println("Conexión a la DB: " + bdUtil.conectar());
 			String sql = "INSERT INTO lente" + "(codigo, precio, color_cristal, color_marco, material_marco, genero,modelo, imagen, marca_id)" + " VALUES('" + l.getCodigo() + "','" + l.getPrecio() + "','" + l.getColorCristal() + "','"+ l.getColorMarco() + "','" + l.getMaterialMarco() + "','" + l.getGenero() + "','" + l.getModelo() + "','" + l.getImagen() + "','" + l.getMarcaFK() + "')"; 
-			Statement st = bdUtils.getConexion().createStatement();
+			Statement st = bdUtil.getConexion().createStatement();
 			st.executeUpdate(sql);
 			resultado = true;
 			System.out.println("Ejecución del SQL: " + resultado);
@@ -27,7 +27,7 @@ public class LenteDAO {
 			System.out.println("Ejecución del SQL: " + resultado);
 			
 		} finally { 
-			bdUtils.desconectar(); 
+			bdUtil.desconectar(); 
 		}
 		return resultado;
 	}
@@ -38,10 +38,10 @@ public class LenteDAO {
 		boolean resultado;
 		try {
 			
-			System.out.println("Conexión a la DB: " + bdUtils.conectar());
+			System.out.println("Conexión a la DB: " + bdUtil.conectar());
 		
 			String sql = "SELECT *" + " FROM lente";
-			PreparedStatement st = bdUtils.getConexion().prepareStatement(sql); 
+			PreparedStatement st = bdUtil.getConexion().prepareStatement(sql); 
 		
 			ResultSet rs = st.executeQuery();
 			resultado = true;
@@ -67,7 +67,7 @@ public class LenteDAO {
 			lentes = null;
 			
 		} finally { 
-			bdUtils.desconectar(); 
+			bdUtil.desconectar(); 
 		}
 
 		return lentes;
