@@ -36,7 +36,6 @@ public class MarcaDAO {
 		
 		boolean resultado;
 		try {
-			
 			System.out.println("Conexión a la DB: " + bdUtil.conectar());
 		
 			String sql = "SELECT *" + " FROM marca";

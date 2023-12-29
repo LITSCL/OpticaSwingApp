@@ -37,7 +37,6 @@ public class LenteDAO {
 		
 		boolean resultado;
 		try {
-			
 			System.out.println("Conexión a la DB: " + bdUtil.conectar());
 		
 			String sql = "SELECT *" + " FROM lente";
